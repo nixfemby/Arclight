@@ -6,7 +6,6 @@ const modal: Modal = {
     id: "verify-modal",
     execute: async (interaction, client) => {
         if(!interaction.guild || !interaction.member) return;
-
         let cachedRoleID = await redisClient.get(`captcharole-${interaction.guild.id}`).catch(e => logger.error(`Redis DB Error: ${e}`));
         let roleID: string;
         if(!cachedRoleID) {
