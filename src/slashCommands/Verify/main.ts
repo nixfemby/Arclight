@@ -1,7 +1,7 @@
 // --- Verify Setup 
 
 import { SlashCommandBuilder, EmbedBuilder, ChannelType, ButtonBuilder, ButtonStyle, ActionRow, ActionRowBuilder, PermissionFlagsBits } from "discord.js"
-import { prisma, redisClient } from "../../helpers/DB";
+import { prisma } from "../../helpers/DB";
 import { logger } from "../../helpers/logger";
 import { SlashCommand } from "../../types";
 
@@ -41,12 +41,10 @@ const command : SlashCommand = {
             return interaction.reply({ content: "Unfortunately an error occured while saving your data, please try again later.", ephemeral: true});
         });
 
-        redisClient.set(`captcharole-${interaction.guild.id}`, role.id).catch(e => logger.error(`Redis Client Error: ${e}`));
-
         let verifButton = new ButtonBuilder().setCustomId('captchaverify').setLabel("Verify").setStyle(ButtonStyle.Primary);
         let verifButtonRow = new ActionRowBuilder<ButtonBuilder>().addComponents(verifButton);
         try {
-            await chan.send({ embeds: [new EmbedBuilder().setTitle(`Welcome to ${interaction.guild.name}`).setDescription("ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ").setFooter({ text: `follow guidelines & tos\ndon't cause stupid drama\nno dm ads/ads\ndon't take everything as serious by default <3\n\nverify below, mwah <3`}).setColor("#2F3136")], components: [verifButtonRow]})
+            await chan.send({ embeds: [new EmbedBuilder().setTitle(`Welcome to ${interaction.guild.name}`).setDescription("ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ").setFooter({ text: `follow guidelines & tos\nno nsfw\ndon't cause stupid drama\nno dm ads/ads\ndon't take everything as serious by default <3\n\nverify below, mwah <3`}).setColor("#2F3136")], components: [verifButtonRow]})
         } catch(e) {
             logger.error(`Issue sending Verify Message: ${e}`);
             return interaction.reply({ content: "An error occured sending the message, please try again and check channel permissions if this issue persists.", ephemeral: true});

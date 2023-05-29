@@ -5,8 +5,8 @@
   "main": "build/index.js",
   "bin": "build/index.js",
   "scripts": {
-    "build": "rm -Rf build && swc src --out-dir build",
-    "start": "clear && node build/index.js",
+    "build": "swc src --out-dir build && prisma db push",
+    "start": "node build/index.js",
     "server": "swc src --out-dir build` && node build/index.js",
     "migrate": "prisma db push && prisma generate"
   },
@@ -22,7 +22,6 @@
     "dotenv": "^16.0.2",
     "figures": "2.0.0",
     "prisma": "^4.6.1",
-    "redis": "^4.5.1",
     "signale-logger": "^1.5.1"
   },
   "devDependencies": {
