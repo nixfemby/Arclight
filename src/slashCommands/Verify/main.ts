@@ -44,7 +44,7 @@ const command : SlashCommand = {
         let verifButton = new ButtonBuilder().setCustomId('captchaverify').setLabel("Verify").setStyle(ButtonStyle.Primary);
         let verifButtonRow = new ActionRowBuilder<ButtonBuilder>().addComponents(verifButton);
         try {
-            await chan.send({ embeds: [new EmbedBuilder().setTitle(`Welcome to ${interaction.guild.name}`).setDescription("ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ").setFooter({ text: `follow guidelines & tos\nno nsfw\ndon't cause stupid drama\nno dm ads/ads\ndon't take everything as serious by default <3\n\nverify below, mwah <3`}).setColor("#2F3136")], components: [verifButtonRow]})
+            await chan.send({ embeds: [new EmbedBuilder().setTitle(`Welcome to ${interaction.guild.name}!`).setDescription("ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ").setFooter({ text: `follow guidelines & tos\nno nsfw\ndon't cause stupid drama\nno dm ads/ads in general\ndon't take everything as serious by default <3\n\nverify below, mwah <3`}).setColor("#9ccfd8")], components: [verifButtonRow]})
         } catch(e) {
             logger.error(`Issue sending Verify Message: ${e}`);
             return interaction.reply({ content: "An error occured sending the message, please try again and check channel permissions if this issue persists.", ephemeral: true});
